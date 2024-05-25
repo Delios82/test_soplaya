@@ -5,4 +5,7 @@ from restaurant.models import Restaurant
 class RestaurantFilter(FilterSet):
     class Meta:
         model = Restaurant
-        fields = ['restaurant', 'date']
+        fields = {
+            'restaurant': ['exact'],
+            'date': ['exact', 'gte', 'lte'],
+        }

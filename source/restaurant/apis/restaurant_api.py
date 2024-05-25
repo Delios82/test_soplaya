@@ -4,13 +4,14 @@ from rest_framework.response import Response
 from restaurant.serializers import RestaurantSerializer
 from restaurant.filters import RestaurantFilter
 from django.db.models import Sum
+from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 
 
 class RestaurantList(ListAPIView):
     queryset = Restaurant.objects.all()
     serializer_class = RestaurantSerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_class = RestaurantFilter
     ordering_fields = '__all__'
 
@@ -18,7 +19,8 @@ class RestaurantList(ListAPIView):
 class RestaurantAggregateList(ListAPIView):
     queryset = Restaurant.objects.all()
     serializer_class = RestaurantSerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    ordering_fields = '__all__'
     filterset_class = RestaurantFilter
 
     def get_queryset(self):

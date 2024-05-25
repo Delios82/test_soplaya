@@ -1,0 +1,1 @@
+from .test_restaurant import RestaurantAPITestCase

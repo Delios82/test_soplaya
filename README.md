@@ -13,7 +13,7 @@ Avviare la parte web/api tramite docker
 docker-compose up -d soplaya_web
 ```
 
-Avviare prima il DB prima di avviare la parte web.
+NB: Avviare prima il DB prima di avviare la parte web.
 
 Quando verrà avviato il container web, verranno in automatico eseguiti i comandi:
 
@@ -37,4 +37,14 @@ python3 manage.py import_data_restaurant /code/data/dataset.csv
 ```
 
 NB: /code è il path interno del container docker 
+
+### Test Automatici
+
+```shell
+python3 manage.py test
+```
+
+### Info Varie
+
+Nella cartella collections è presente un file "basilare" postman per testare le 2 api
 

@@ -1,0 +1,80 @@
+{
+	"info": {
+		"_postman_id": "c210fd4f-7df2-4fc8-bbcf-83f6d444d97f",
+		"name": "Test Soplaya",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6189459"
+	},
+	"item": [
+		{
+			"name": "list restaurant",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9001/api/v1/restaurant/list/?restaurant=Copacabana&date__gte=2016-01-07&ordering=date",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9001",
+					"path": [
+						"api",
+						"v1",
+						"restaurant",
+						"list",
+						""
+					],
+					"query": [
+						{
+							"key": "restaurant",
+							"value": "Copacabana"
+						},
+						{
+							"key": "date__gte",
+							"value": "2016-01-07"
+						},
+						{
+							"key": "ordering",
+							"value": "date"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list restaurant aggregate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9001/api/v1/restaurant/aggregate/?restaurant=Copacabana&ordering=restaurant",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9001",
+					"path": [
+						"api",
+						"v1",
+						"restaurant",
+						"aggregate",
+						""
+					],
+					"query": [
+						{
+							"key": "restaurant",
+							"value": "Copacabana"
+						},
+						{
+							"key": "ordering",
+							"value": "restaurant"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
