@@ -1,0 +1,55 @@
+services:
+  db_postgis_soplaya:
+    image: postgis/postgis:15-3.3
+    container_name: db_postgis_soplaya
+    volumes:
+      - ./data-db/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_HOST=db_postgis_soplaya
+      - POSTGRES_DB=soplaya
+      - POSTGRES_PASSWORD=soplaya
+      - POSTGRES_USER=soplaya
+    ports:
+      - "5432:5432"
+    networks:
+      backend_soplaya:
+        aliases:
+          - soplaya-network
+
+  soplaya_web:
+    container_name: soplaya_web
+    depends_on:
+      - db_postgis_soplaya
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    environment:
+      - DB_ENGINE=django.contrib.gis.db.backends.postgis
+      - DB_HOST=db_postgis_soplaya
+      - DB_NAME=soplaya
+      - DB_USER=soplaya
+      - DB_PASSWORD=soplaya
+      - DB_PORT=5432
+      - DEBUG=on
+      - DEBUG_TOOLBAR=off
+    volumes:
+      - ./source:/code
+      - ./docker/script:/script
+    tty: true
+    networks:
+      backend_soplaya:
+        aliases:
+          - soplaya-network
+
+    command: bash -c "/bin/bash /script/start.sh"
+    ports:
+      - "9001:9001"
+#      - "80:80"
+#      - "443:443"
+
+networks:
+  backend_soplaya:
+    name: soplaya-network
+
+
+
